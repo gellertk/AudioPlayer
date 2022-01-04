@@ -9,21 +9,41 @@
 /* Begin PBXBuildFile section */
 		CB1785E6277863A7003B0032 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1785E5277863A7003B0032 /* AppDelegate.swift */; };
 		CB1785E8277863A7003B0032 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1785E7277863A7003B0032 /* SceneDelegate.swift */; };
-		CB1785EA277863A7003B0032 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1785E9277863A7003B0032 /* ViewController.swift */; };
-		CB1785ED277863A7003B0032 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB1785EB277863A7003B0032 /* Main.storyboard */; };
+		CB1785EA277863A7003B0032 /* MusicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1785E9277863A7003B0032 /* MusicListViewController.swift */; };
 		CB1785EF277863A9003B0032 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB1785EE277863A9003B0032 /* Assets.xcassets */; };
 		CB1785F2277863A9003B0032 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB1785F0277863A9003B0032 /* LaunchScreen.storyboard */; };
+		CB1785FB277875F9003B0032 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1785FA277875F9003B0032 /* Song.swift */; };
+		CB1785FD27787E3B003B0032 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1785FC27787E3B003B0032 /* PlayerViewController.swift */; };
+		CBCE0F9B27822B0F004EA2EA /* AVPlayerItemExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCE0F9A27822B0F004EA2EA /* AVPlayerItemExtensions.swift */; };
+		CBCE0F9F2782ECEB004EA2EA /* TimeIntervalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCE0F9E2782ECEB004EA2EA /* TimeIntervalExtensions.swift */; };
+		CBCE0FCF27843718004EA2EA /* Оставь Меня Одну.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBCE0FC627843715004EA2EA /* Оставь Меня Одну.mp3 */; };
+		CBCE0FD027843718004EA2EA /* niletto-na-postu-mp3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBCE0FC727843715004EA2EA /* niletto-na-postu-mp3.mp3 */; };
+		CBCE0FD127843718004EA2EA /* vika-starikova-chajka-mp3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBCE0FC827843716004EA2EA /* vika-starikova-chajka-mp3.mp3 */; };
+		CBCE0FD227843718004EA2EA /* Ее глаза.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBCE0FC927843716004EA2EA /* Ее глаза.mp3 */; };
+		CBCE0FD527843718004EA2EA /* Жертва (Oxxxymiron diss).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBCE0FCC27843717004EA2EA /* Жертва (Oxxxymiron diss).mp3 */; };
+		CBCE0FD627843718004EA2EA /* tima-belorusskikh-prosto-lera-minuta-vechera.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBCE0FCD27843718004EA2EA /* tima-belorusskikh-prosto-lera-minuta-vechera.mp3 */; };
+		CBCE0FD727843718004EA2EA /* rebzyyx-hoshie-star-all-i-want-is-you-mp3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBCE0FCE27843718004EA2EA /* rebzyyx-hoshie-star-all-i-want-is-you-mp3.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CB1785E2277863A7003B0032 /* AudioPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB1785E5277863A7003B0032 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB1785E7277863A7003B0032 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CB1785E9277863A7003B0032 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		CB1785EC277863A7003B0032 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CB1785E9277863A7003B0032 /* MusicListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicListViewController.swift; sourceTree = "<group>"; };
 		CB1785EE277863A9003B0032 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB1785F1277863A9003B0032 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CB1785F3277863A9003B0032 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB1785FA277875F9003B0032 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		CB1785FC27787E3B003B0032 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		CBCE0F9A27822B0F004EA2EA /* AVPlayerItemExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerItemExtensions.swift; sourceTree = "<group>"; };
+		CBCE0F9E2782ECEB004EA2EA /* TimeIntervalExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalExtensions.swift; sourceTree = "<group>"; };
+		CBCE0FC627843715004EA2EA /* Оставь Меня Одну.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Оставь Меня Одну.mp3"; sourceTree = "<group>"; };
+		CBCE0FC727843715004EA2EA /* niletto-na-postu-mp3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "niletto-na-postu-mp3.mp3"; sourceTree = "<group>"; };
+		CBCE0FC827843716004EA2EA /* vika-starikova-chajka-mp3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "vika-starikova-chajka-mp3.mp3"; sourceTree = "<group>"; };
+		CBCE0FC927843716004EA2EA /* Ее глаза.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ее глаза.mp3"; sourceTree = "<group>"; };
+		CBCE0FCC27843717004EA2EA /* Жертва (Oxxxymiron diss).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Жертва (Oxxxymiron diss).mp3"; sourceTree = "<group>"; };
+		CBCE0FCD27843718004EA2EA /* tima-belorusskikh-prosto-lera-minuta-vechera.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "tima-belorusskikh-prosto-lera-minuta-vechera.mp3"; sourceTree = "<group>"; };
+		CBCE0FCE27843718004EA2EA /* rebzyyx-hoshie-star-all-i-want-is-you-mp3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "rebzyyx-hoshie-star-all-i-want-is-you-mp3.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +76,49 @@
 		CB1785E4277863A7003B0032 /* AudioPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				CB1785E5277863A7003B0032 /* AppDelegate.swift */,
-				CB1785E7277863A7003B0032 /* SceneDelegate.swift */,
-				CB1785E9277863A7003B0032 /* ViewController.swift */,
-				CB1785EB277863A7003B0032 /* Main.storyboard */,
+				CB1785F927786556003B0032 /* SupportingFiles */,
+				CBCE0F9C27823E75004EA2EA /* ViewControllers */,
+				CBEE315B277A4FF30000972C /* Songs */,
+				CB1785FA277875F9003B0032 /* Song.swift */,
+				CBCE0F9E2782ECEB004EA2EA /* TimeIntervalExtensions.swift */,
+				CBCE0F9A27822B0F004EA2EA /* AVPlayerItemExtensions.swift */,
 				CB1785EE277863A9003B0032 /* Assets.xcassets */,
 				CB1785F0277863A9003B0032 /* LaunchScreen.storyboard */,
 				CB1785F3277863A9003B0032 /* Info.plist */,
 			);
 			path = AudioPlayer;
+			sourceTree = "<group>";
+		};
+		CB1785F927786556003B0032 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				CB1785E5277863A7003B0032 /* AppDelegate.swift */,
+				CB1785E7277863A7003B0032 /* SceneDelegate.swift */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		CBCE0F9C27823E75004EA2EA /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CB1785E9277863A7003B0032 /* MusicListViewController.swift */,
+				CB1785FC27787E3B003B0032 /* PlayerViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		CBEE315B277A4FF30000972C /* Songs */ = {
+			isa = PBXGroup;
+			children = (
+				CBCE0FC927843716004EA2EA /* Ее глаза.mp3 */,
+				CBCE0FCC27843717004EA2EA /* Жертва (Oxxxymiron diss).mp3 */,
+				CBCE0FC627843715004EA2EA /* Оставь Меня Одну.mp3 */,
+				CBCE0FC727843715004EA2EA /* niletto-na-postu-mp3.mp3 */,
+				CBCE0FCE27843718004EA2EA /* rebzyyx-hoshie-star-all-i-want-is-you-mp3.mp3 */,
+				CBCE0FCD27843718004EA2EA /* tima-belorusskikh-prosto-lera-minuta-vechera.mp3 */,
+				CBCE0FC827843716004EA2EA /* vika-starikova-chajka-mp3.mp3 */,
+			);
+			path = Songs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,9 +179,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBCE0FD727843718004EA2EA /* rebzyyx-hoshie-star-all-i-want-is-you-mp3.mp3 in Resources */,
+				CBCE0FD627843718004EA2EA /* tima-belorusskikh-prosto-lera-minuta-vechera.mp3 in Resources */,
 				CB1785F2277863A9003B0032 /* LaunchScreen.storyboard in Resources */,
+				CBCE0FD527843718004EA2EA /* Жертва (Oxxxymiron diss).mp3 in Resources */,
 				CB1785EF277863A9003B0032 /* Assets.xcassets in Resources */,
-				CB1785ED277863A7003B0032 /* Main.storyboard in Resources */,
+				CBCE0FD127843718004EA2EA /* vika-starikova-chajka-mp3.mp3 in Resources */,
+				CBCE0FD027843718004EA2EA /* niletto-na-postu-mp3.mp3 in Resources */,
+				CBCE0FCF27843718004EA2EA /* Оставь Меня Одну.mp3 in Resources */,
+				CBCE0FD227843718004EA2EA /* Ее глаза.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +198,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB1785EA277863A7003B0032 /* ViewController.swift in Sources */,
+				CB1785FB277875F9003B0032 /* Song.swift in Sources */,
+				CB1785EA277863A7003B0032 /* MusicListViewController.swift in Sources */,
+				CBCE0F9B27822B0F004EA2EA /* AVPlayerItemExtensions.swift in Sources */,
 				CB1785E6277863A7003B0032 /* AppDelegate.swift in Sources */,
 				CB1785E8277863A7003B0032 /* SceneDelegate.swift in Sources */,
+				CB1785FD27787E3B003B0032 /* PlayerViewController.swift in Sources */,
+				CBCE0F9F2782ECEB004EA2EA /* TimeIntervalExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		CB1785EB277863A7003B0032 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CB1785EC277863A7003B0032 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CB1785F0277863A9003B0032 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -294,7 +350,6 @@
 				INFOPLIST_FILE = AudioPlayer/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -322,7 +377,6 @@
 				INFOPLIST_FILE = AudioPlayer/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
