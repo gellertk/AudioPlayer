@@ -1,0 +1,55 @@
+//
+//  CustomSlider.swift
+//  AudioPlayer
+//
+//  Created by Кирилл  Геллерт on 05.01.2022.
+//
+
+import UIKit
+
+class CustomSlider: UISlider {
+    
+    var trackHeight: CGFloat = 3
+    
+    // Custom thumb view which will be converted to UIImage
+    // and set as thumb. You can customize it's colors, border, etc.
+    private lazy var thumbView: UIView = {
+        let thumb = UIView()
+        thumb.backgroundColor = .systemGreen//thumbTintColor
+        return thumb
+    }()
+    
+    init(thumbRadius: CGFloat) {
+        super.init(frame: CGRect.zero)
+        let thumb = thumbImage(radius: thumbRadius)
+        setThumbImage(thumb, for: .normal)
+        maximumTrackTintColor = #colorLiteral(red: 0.4187612496, green: 0.7685038056, blue: 0.2133596507, alpha: 0.2476690432)
+        minimumTrackTintColor = .systemGreen
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func thumbImage(radius: CGFloat) -> UIImage {
+        // Set proper frame
+        // y: radius / 2 will correctly offset the thumb
+        
+        thumbView.frame = CGRect(x: 0, y: radius / 2, width: radius, height: radius)
+        thumbView.layer.cornerRadius = radius / 2
+        
+        // Convert thumbView to UIImage
+        let renderer = UIGraphicsImageRenderer(bounds: thumbView.bounds)
+        return renderer.image { rendererContext in
+            thumbView.layer.render(in: rendererContext.cgContext)
+        }
+    }
+    
+    override func trackRect(forBounds bounds: CGRect) -> CGRect {
+        // Set custom track height
+        var newRect = super.trackRect(forBounds: bounds)
+        newRect.size.height = trackHeight
+        return newRect
+    }
+    
+}

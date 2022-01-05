@@ -29,6 +29,7 @@ extension Song {
                 if item.hasSuffix("mp3") {
                     if let audioPath = Bundle.main.path(forResource: item.replacingOccurrences(of: ".mp3", with: ""), ofType: "mp3") {
                         let avPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: audioPath))
+                        avPlayer.play()
                         let avpItem = AVPlayerItem(url: URL(fileURLWithPath: audioPath))
                         songList.append(Song(name: avpItem.value(for: .commonKeyTitle),
                                              format: "mp3",

@@ -124,7 +124,6 @@ class MusicListViewController: UIViewController {
     @objc func tapOnSong(target: UITapGestureRecognizer) {
         guard let indexView = target.view?.tag else {return}
         let playerVC = PlayerViewController(currentSong: songs[indexView])
-        print(indexView)
         present(playerVC, animated: true, completion: nil)
     }
 

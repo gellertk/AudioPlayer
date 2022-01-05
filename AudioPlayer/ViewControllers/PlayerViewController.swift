@@ -10,9 +10,10 @@ import UIKit
 class PlayerViewController: UIViewController {
     
     var currentSong: Song
-    
-    var imgAlbum: UIImageView = {
-        return UIImageView()
+    lazy var mediaPlayer: UIView = {
+        let view = MediaPlayer(currentSong: currentSong)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     init(currentSong: Song) {
@@ -23,11 +24,26 @@ class PlayerViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        setupView()
     }
     
+    func setupView() {
+        view.backgroundColor = .white
+        view.addSubview(mediaPlayer)
+        setupConstraints()
+        //print((mediaPlayer.subviews[0] as? UIImageView)?.image)
+    }
+    
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+            mediaPlayer.topAnchor.constraint(equalTo: view.topAnchor),
+            mediaPlayer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            mediaPlayer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            mediaPlayer.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
 }
 
