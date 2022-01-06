@@ -8,9 +8,18 @@
 import Foundation
 
 extension TimeInterval {
-    func songDurationFormat() -> String {
-        let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.minute, .second]
-        return formatter.string(from: self) ?? "0:00"
+    func getFormattedTime() -> String {
+        let mins = self / 60
+        let secs = self.truncatingRemainder(dividingBy: 60)
+        let timeFormatter = NumberFormatter()
+        timeFormatter.minimumIntegerDigits = 2
+        timeFormatter.minimumFractionDigits = 0
+        timeFormatter.roundingMode = .down
+        
+        guard let minStr = timeFormatter.string(from: NSNumber(value: mins)), let secStr = timeFormatter.string(from: NSNumber(value: secs)) else {
+            return "00:00"
+        }
+        
+        return "\(minStr):\(secStr)"
     }
 }

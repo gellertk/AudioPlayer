@@ -14,7 +14,7 @@ struct Song {
     var albumName: String
     var albumImageData: Data?
     var artist: String
-    var songPath: String
+    var songURL: URL
     var duration: String
 }
 
@@ -28,7 +28,8 @@ extension Song {
             for item in items {
                 if item.hasSuffix("mp3") {
                     if let audioPath = Bundle.main.path(forResource: item.replacingOccurrences(of: ".mp3", with: ""), ofType: "mp3") {
-                        let avPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: audioPath))
+                        let songURL = URL(fileURLWithPath: audioPath)
+                        let avPlayer = try AVAudioPlayer(contentsOf: songURL)
                         avPlayer.play()
                         let avpItem = AVPlayerItem(url: URL(fileURLWithPath: audioPath))
                         songList.append(Song(name: avpItem.value(for: .commonKeyTitle),
@@ -36,8 +37,8 @@ extension Song {
                                              albumName: avpItem.value(for: .commonKeyAlbumName),
                                              albumImageData: avpItem.asset.metadata.first(where: {$0.commonKey == .commonKeyArtwork})?.value as? Data,
                                              artist: avpItem.value(for: .commonKeyArtist),
-                                             songPath: audioPath,
-                                             duration: avPlayer.duration.songDurationFormat()))
+                                             songURL: songURL,
+                                             duration: avPlayer.duration.getFormattedTime()))
                     }
                 }
             }
