@@ -11,11 +11,9 @@ class CustomSlider: UISlider {
     
     var trackHeight: CGFloat = 3
     
-    // Custom thumb view which will be converted to UIImage
-    // and set as thumb. You can customize it's colors, border, etc.
     private lazy var thumbView: UIView = {
         let thumb = UIView()
-        thumb.backgroundColor = .systemGreen//thumbTintColor
+        thumb.backgroundColor = .systemGreen
         return thumb
     }()
     
@@ -32,13 +30,9 @@ class CustomSlider: UISlider {
     }
     
     private func thumbImage(radius: CGFloat) -> UIImage {
-        // Set proper frame
-        // y: radius / 2 will correctly offset the thumb
-        
         thumbView.frame = CGRect(x: 0, y: radius / 2, width: radius, height: radius)
         thumbView.layer.cornerRadius = radius / 2
         
-        // Convert thumbView to UIImage
         let renderer = UIGraphicsImageRenderer(bounds: thumbView.bounds)
         return renderer.image { rendererContext in
             thumbView.layer.render(in: rendererContext.cgContext)
@@ -46,7 +40,6 @@ class CustomSlider: UISlider {
     }
     
     override func trackRect(forBounds bounds: CGRect) -> CGRect {
-        // Set custom track height
         var newRect = super.trackRect(forBounds: bounds)
         newRect.size.height = trackHeight
         return newRect

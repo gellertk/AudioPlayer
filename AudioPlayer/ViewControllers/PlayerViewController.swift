@@ -69,7 +69,6 @@ class PlayerViewController: UIViewController {
         lbl.font = UIFont.systemFont(ofSize: 11, weight: .regular)
         lbl.alpha = 0.5
         lbl.textColor = .lightGray
-        lbl.text = "00:00"
         return lbl
     }()
     
@@ -78,13 +77,11 @@ class PlayerViewController: UIViewController {
         lbl.font = UIFont.systemFont(ofSize: 11, weight: .regular)
         lbl.alpha = 0.5
         lbl.textColor = .lightGray
-        lbl.text = "00:00"
         return lbl
     }()
     
     lazy var sldrProgress: UISlider = {
         let sldr = CustomSlider(thumbRadius: 8)
-        sldr.addTarget(self, action: #selector(didTapThumb(sender:)), for: .touchDown)
         sldr.addTarget(self, action: #selector(progressScrubbed(sender:)), for: .valueChanged)
         return sldr
     }()
@@ -163,7 +160,7 @@ class PlayerViewController: UIViewController {
     lazy var stackSongAction: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [btnPrevious, btnPlayPause, btnNext])
         stackView.axis = .horizontal
-        stackView.distribution = .equalSpacing
+        stackView.distribution = .fillEqually
         stackView.spacing = 20
         return stackView
     }()
@@ -176,12 +173,34 @@ class PlayerViewController: UIViewController {
         return btn
     }()
     
+    lazy var btnActions: UIButton = {
+       let btn = UIButton()
+       btn.tintColor = .lightGray
+       btn.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+       let saveMenu = UIMenu(title: "", children: [
+            UIAction(title: "Полезное действие") { action in
+                print("useful action")
+            }])
+       btn.menu = saveMenu
+       btn.showsMenuAsPrimaryAction = true
+       return btn
+    }()
+    
+    lazy var btnAdd: UIButton = {
+        let btn = UIButton()
+        btn.tintColor = .lightGray
+        btn.setImage(UIImage(systemName: "plus"), for: .normal)
+        return btn
+    }()
+    
     var player = AVAudioPlayer()
     var timer: Timer?
     var songs: [Song]
+    var songsUnshuffled: [Song]
     var playingIndex: Int
     
     init(songs: [Song], playingIndex: Int) {
+        self.songsUnshuffled = songs
         self.playingIndex = playingIndex
         self.songs = songs
         super.init(nibName: nil, bundle: nil)
@@ -205,11 +224,12 @@ class PlayerViewController: UIViewController {
             try player = AVAudioPlayer(contentsOf: songs[playingIndex].songURL)
             player.delegate = self
             player.prepareToPlay()
+            player.numberOfLoops = imgRepeatDot.isHidden ? 0 : 1
+            player.volume = sldrVolume.value
             
             try AVAudioSession.sharedInstance().setCategory(.playback)
             try AVAudioSession.sharedInstance().setActive(true)
             
-            player.volume = sldrVolume.value
             if turnOnSong {
                 play()
             }
@@ -238,7 +258,7 @@ class PlayerViewController: UIViewController {
     
     func setupView() {
         setupPlayer()
-        [imgAlbum, btnClose, lblVcTitle, lblAlbum, btnShare, lblArtist, lblSong, btnShuffle, imgShuffleDot, imgRepeatDot, stackSongAction, btnRepeat, sldrProgress, sldrVolume, lblTimeFromStart, lblTimeToFinish, imgVolumeEmpty, imgVolumeFull, sldrVolume].forEach { v in
+        [imgAlbum, btnClose, lblVcTitle, lblAlbum, btnShare, lblArtist, lblSong, btnShuffle, imgShuffleDot, btnActions, imgRepeatDot, stackSongAction, btnRepeat, sldrProgress, sldrVolume, lblTimeFromStart, lblTimeToFinish, imgVolumeEmpty, imgVolumeFull, sldrVolume, btnAdd].forEach { v in
             v.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(v)
         }
@@ -283,7 +303,7 @@ class PlayerViewController: UIViewController {
             imgAlbum.trailingAnchor.constraint(equalTo: btnShare.trailingAnchor),
             imgAlbum.leadingAnchor.constraint(equalTo: btnClose.leadingAnchor),
             imgAlbum.topAnchor.constraint(equalTo: lblAlbum.bottomAnchor, constant: 15),
-            imgAlbum.heightAnchor.constraint(equalToConstant: view.bounds.height * 0.48),
+            imgAlbum.heightAnchor.constraint(equalToConstant: view.bounds.height * 0.46),
             
             lblSong.topAnchor.constraint(equalTo: imgAlbum.bottomAnchor, constant: 25),
             lblSong.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -314,29 +334,30 @@ class PlayerViewController: UIViewController {
             imgRepeatDot.widthAnchor.constraint(equalToConstant: 4),
             imgRepeatDot.heightAnchor.constraint(equalToConstant: 9),
             
+            stackSongAction.widthAnchor.constraint(equalToConstant: 230),
+            stackSongAction.heightAnchor.constraint(equalToConstant: 60),
             stackSongAction.centerYAnchor.constraint(equalTo: btnShuffle.centerYAnchor),
-            stackSongAction.leadingAnchor.constraint(equalTo: btnShuffle.trailingAnchor, constant: 40),
-            stackSongAction.trailingAnchor.constraint(equalTo: btnRepeat.leadingAnchor, constant: -40),
+            stackSongAction.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             btnRepeat.trailingAnchor.constraint(equalTo: imgAlbum.trailingAnchor),
             btnRepeat.centerYAnchor.constraint(equalTo: btnNext.centerYAnchor),
             
             imgVolumeEmpty.leadingAnchor.constraint(equalTo: imgAlbum.leadingAnchor),
-            imgVolumeEmpty.topAnchor.constraint(equalTo: btnShuffle.bottomAnchor, constant: 50),
+            imgVolumeEmpty.topAnchor.constraint(equalTo: btnShuffle.bottomAnchor, constant: 43),
             
             imgVolumeFull.trailingAnchor.constraint(equalTo: imgAlbum.trailingAnchor),
             imgVolumeFull.centerYAnchor.constraint(equalTo: imgVolumeEmpty.centerYAnchor),
             
             sldrVolume.leadingAnchor.constraint(equalTo: imgVolumeEmpty.trailingAnchor, constant: 20),
             sldrVolume.trailingAnchor.constraint(equalTo: imgVolumeFull.leadingAnchor, constant: -20),
-            sldrVolume.centerYAnchor.constraint(equalTo: imgVolumeEmpty.centerYAnchor)
+            sldrVolume.centerYAnchor.constraint(equalTo: imgVolumeEmpty.centerYAnchor),
+            
+            btnActions.trailingAnchor.constraint(equalTo: imgAlbum.trailingAnchor),
+            btnActions.centerYAnchor.constraint(equalTo: lblSong.centerYAnchor),
+            
+            btnAdd.leadingAnchor.constraint(equalTo: imgAlbum.leadingAnchor),
+            btnAdd.centerYAnchor.constraint(equalTo: lblSong.centerYAnchor)
         ])
-    }
-    
-    @objc func didTapThumb(sender: UISlider) {
-        //        sldrVolume = CustomSlider(thumbRadius: 20)
-        //        sldrVolume.removeFromSuperview()
-        //        view.addSubview(sldrVolume)
     }
     
     @objc func didTapCloseBtn() {
@@ -356,21 +377,16 @@ class PlayerViewController: UIViewController {
         }
         let shareSheetVC = UIActivityViewController(activityItems: [image, url], applicationActivities: nil)
         shareSheetVC.popoverPresentationController?.sourceView = sender
-        shareSheetVC.popoverPresentationController?.sourceRect = sender.frame
+        shareSheetVC.popoverPresentationController?.sourceRect = CGRect(x: sender.bounds.midX, y: sender.bounds.midY,width: 0,height: 0)
         present(shareSheetVC, animated: true)
     }
     
     @objc func didTapShuffleBtn() {
         imgShuffleDot.isHidden = !imgShuffleDot.isHidden
         btnShuffle.tintColor = imgShuffleDot.isHidden ? .lightGray : .darkGray
-        songs = imgShuffleDot.isHidden ? Song.getSongList() : songs.shuffled()
-//        if imgShuffleDot.isHidden {
-//            songs = Song.getSongList()
-//        } else {
-//            songs.shuffle()
-//        }
+        songs = imgShuffleDot.isHidden ? songsUnshuffled : songs.shuffled()
         if imgShuffleDot.isHidden {
-            playingIndex = songs.firstIndex(where: { $0.songURL == player.url })!
+            playingIndex = songs.firstIndex(where: { $0.songURL == player.url }) ?? 0
         }
     }
     
@@ -378,6 +394,7 @@ class PlayerViewController: UIViewController {
         imgRepeatDot.isHidden = !imgRepeatDot.isHidden
         btnRepeat.tintColor = imgRepeatDot.isHidden ? .lightGray : .darkGray
         btnRepeat.setImage(UIImage(systemName: imgRepeatDot.isHidden ? "repeat" : "repeat.1"), for: .normal)
+        player.numberOfLoops = imgRepeatDot.isHidden ? 0 : 1
     }
     
     @objc func didTapNextBtn(songFinish: Bool) {
@@ -391,7 +408,8 @@ class PlayerViewController: UIViewController {
     
     @objc func didTapPreviousBtn() {
         if sldrProgress.value >= 4 {
-            setupPlayer()
+            player.currentTime = 0
+            player.play()
         } else {
             playingIndex -= 1
             if playingIndex < 0 {
@@ -404,7 +422,7 @@ class PlayerViewController: UIViewController {
     
     @objc func didTapPlayPauseBtn() {
         if player.isPlaying {
-            stop()
+            player.pause()
         } else {
             play()
         }

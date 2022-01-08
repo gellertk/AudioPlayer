@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CB1668BE278739AC0023FE31 /* MediaPlayerExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1668BD278739AC0023FE31 /* MediaPlayerExtentions.swift */; };
 		CB1785E6277863A7003B0032 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1785E5277863A7003B0032 /* AppDelegate.swift */; };
 		CB1785E8277863A7003B0032 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1785E7277863A7003B0032 /* SceneDelegate.swift */; };
 		CB1785EA277863A7003B0032 /* MusicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1785E9277863A7003B0032 /* MusicListViewController.swift */; };
@@ -28,7 +27,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CB1668BD278739AC0023FE31 /* MediaPlayerExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerExtentions.swift; sourceTree = "<group>"; };
 		CB1785E2277863A7003B0032 /* AudioPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB1785E5277863A7003B0032 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB1785E7277863A7003B0032 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,10 +81,8 @@
 				CBCE0F9C27823E75004EA2EA /* ViewControllers */,
 				CBEE315B277A4FF30000972C /* Songs */,
 				CB1785FA277875F9003B0032 /* Song.swift */,
-				CBCE0F9E2782ECEB004EA2EA /* TimeIntervalExtensions.swift */,
+				CB4FB78E2789FC7100611A4B /* Extensions */,
 				CBCE0FD82785A604004EA2EA /* CustomSlider.swift */,
-				CB1668BD278739AC0023FE31 /* MediaPlayerExtentions.swift */,
-				CBCE0F9A27822B0F004EA2EA /* AVPlayerItemExtensions.swift */,
 				CB1785EE277863A9003B0032 /* Assets.xcassets */,
 				CB1785F0277863A9003B0032 /* LaunchScreen.storyboard */,
 				CB1785F3277863A9003B0032 /* Info.plist */,
@@ -102,6 +98,15 @@
 				CB1785E7277863A7003B0032 /* SceneDelegate.swift */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		CB4FB78E2789FC7100611A4B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CBCE0F9E2782ECEB004EA2EA /* TimeIntervalExtensions.swift */,
+				CBCE0F9A27822B0F004EA2EA /* AVPlayerItemExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		CBCE0F9C27823E75004EA2EA /* ViewControllers */ = {
@@ -204,7 +209,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB1668BE278739AC0023FE31 /* MediaPlayerExtentions.swift in Sources */,
 				CB1785FB277875F9003B0032 /* Song.swift in Sources */,
 				CB1785EA277863A7003B0032 /* MusicListViewController.swift in Sources */,
 				CBCE0F9B27822B0F004EA2EA /* AVPlayerItemExtensions.swift in Sources */,
