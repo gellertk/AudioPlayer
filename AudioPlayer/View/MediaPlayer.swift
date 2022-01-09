@@ -1,5 +1,5 @@
 //
-//  PlayerViewController.swift
+//  MediaPlayer.swift
 //  AudioPlayer
 //
 //  Created by Кирилл  Геллерт on 26.12.2021.
@@ -9,7 +9,7 @@ import UIKit
 import AVFoundation
 import MediaPlayer
 
-class PlayerViewController: UIViewController {
+class MediaPlayer: UIView {
     
     lazy var imgAlbum: UIImageView = {
         let imgView = UIImageView()
@@ -198,13 +198,15 @@ class PlayerViewController: UIViewController {
     var songs: [Song]
     var songsUnshuffled: [Song]
     var playingIndex: Int
+    let playerVC : PlayerViewController
     
-    init(songs: [Song], playingIndex: Int) {
+    init(songs: [Song], playingIndex: Int, playerVC: PlayerViewController) {
         self.songsUnshuffled = songs
         self.playingIndex = playingIndex
         self.songs = songs
-        super.init(nibName: nil, bundle: nil)
-        view.backgroundColor = .white
+        self.playerVC = playerVC
+        super.init(frame: CGRect.zero)
+        backgroundColor = .white
         sldrVolume.value = 0.5
         setupView()
         didTapPlayPauseBtn()
@@ -260,7 +262,7 @@ class PlayerViewController: UIViewController {
         setupPlayer()
         [imgAlbum, btnClose, lblVcTitle, lblAlbum, btnShare, lblArtist, lblSong, btnShuffle, imgShuffleDot, btnActions, imgRepeatDot, stackSongAction, btnRepeat, sldrProgress, sldrVolume, lblTimeFromStart, lblTimeToFinish, imgVolumeEmpty, imgVolumeFull, sldrVolume, btnAdd].forEach { v in
             v.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(v)
+            addSubview(v)
         }
         setupConstraints()
     }
@@ -286,30 +288,30 @@ class PlayerViewController: UIViewController {
         NSLayoutConstraint.activate([
             btnClose.widthAnchor.constraint(equalToConstant: 35),
             btnClose.heightAnchor.constraint(equalToConstant: 20),
-            btnClose.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
-            btnClose.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
+            btnClose.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
+            btnClose.topAnchor.constraint(equalTo: topAnchor, constant: 30),
             
-            lblVcTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: 25),
-            lblVcTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            lblVcTitle.topAnchor.constraint(equalTo: topAnchor, constant: 25),
+            lblVcTitle.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             lblAlbum.topAnchor.constraint(equalTo: lblVcTitle.bottomAnchor, constant: 3),
-            lblAlbum.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            lblAlbum.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             btnShare.widthAnchor.constraint(equalToConstant: 30),
             btnShare.heightAnchor.constraint(equalToConstant: 30),
-            btnShare.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
-            btnShare.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            btnShare.topAnchor.constraint(equalTo: topAnchor, constant: 30),
+            btnShare.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
             
             imgAlbum.trailingAnchor.constraint(equalTo: btnShare.trailingAnchor),
             imgAlbum.leadingAnchor.constraint(equalTo: btnClose.leadingAnchor),
             imgAlbum.topAnchor.constraint(equalTo: lblAlbum.bottomAnchor, constant: 15),
-            imgAlbum.heightAnchor.constraint(equalToConstant: view.bounds.height * 0.46),
+            imgAlbum.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 0.46),
             
             lblSong.topAnchor.constraint(equalTo: imgAlbum.bottomAnchor, constant: 25),
-            lblSong.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            lblSong.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             lblArtist.topAnchor.constraint(equalTo: lblSong.bottomAnchor, constant: 5),
-            lblArtist.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            lblArtist.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             lblTimeFromStart.leadingAnchor.constraint(equalTo: imgAlbum.leadingAnchor),
             lblTimeFromStart.topAnchor.constraint(equalTo: lblArtist.bottomAnchor, constant: 25),
@@ -337,7 +339,7 @@ class PlayerViewController: UIViewController {
             stackSongAction.widthAnchor.constraint(equalToConstant: 230),
             stackSongAction.heightAnchor.constraint(equalToConstant: 60),
             stackSongAction.centerYAnchor.constraint(equalTo: btnShuffle.centerYAnchor),
-            stackSongAction.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stackSongAction.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             btnRepeat.trailingAnchor.constraint(equalTo: imgAlbum.trailingAnchor),
             btnRepeat.centerYAnchor.constraint(equalTo: btnNext.centerYAnchor),
@@ -362,13 +364,7 @@ class PlayerViewController: UIViewController {
     
     @objc func didTapCloseBtn() {
         stop()
-        dismiss(animated: true, completion: nil)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        stop()
-        dismiss(animated: true, completion: nil)
+        playerVC.dismiss(animated: true, completion: nil)
     }
     
     @objc func didTapShareBtn(_ sender: UIButton) {
@@ -378,7 +374,7 @@ class PlayerViewController: UIViewController {
         let shareSheetVC = UIActivityViewController(activityItems: [image, url], applicationActivities: nil)
         shareSheetVC.popoverPresentationController?.sourceView = sender
         shareSheetVC.popoverPresentationController?.sourceRect = CGRect(x: sender.bounds.midX, y: sender.bounds.midY,width: 0,height: 0)
-        present(shareSheetVC, animated: true)
+        playerVC.present(shareSheetVC, animated: true)
     }
     
     @objc func didTapShuffleBtn() {
@@ -431,7 +427,7 @@ class PlayerViewController: UIViewController {
     
 }
 
-extension PlayerViewController: AVAudioPlayerDelegate {
+extension MediaPlayer: AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         didTapNextBtn(songFinish: true)
     }

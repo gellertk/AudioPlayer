@@ -10,7 +10,6 @@ import AVFoundation
 
 struct Song {
     var name: String
-    var format: String
     var albumName: String
     var albumImageData: Data?
     var artist: String
@@ -33,7 +32,6 @@ extension Song {
                         avPlayer.play()
                         let avpItem = AVPlayerItem(url: URL(fileURLWithPath: audioPath))
                         songList.append(Song(name: avpItem.value(for: .commonKeyTitle),
-                                             format: "mp3",
                                              albumName: avpItem.value(for: .commonKeyAlbumName),
                                              albumImageData: avpItem.asset.metadata.first(where: {$0.commonKey == .commonKeyArtwork})?.value as? Data,
                                              artist: avpItem.value(for: .commonKeyArtist),
@@ -47,5 +45,4 @@ extension Song {
         }
         return songList
     }
-    
 }
